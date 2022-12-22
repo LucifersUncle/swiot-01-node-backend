@@ -40,10 +40,6 @@ const addData = (payload) => {
 
 var app = express();
 
-// view engine setup
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'jade');
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(cookieParser());
@@ -70,8 +66,6 @@ app.get("/data", cors(), async (req, res) => {
     snapshot.docs.map(doc => {
       dataCollection.push(doc.data())
   })
-
-    // console.log(dataCollection)
     res.send(dataCollection);
   }
 })
@@ -108,7 +102,7 @@ var options = {
   protocol: 'mqtts',
   username: 'swiot',
   password: 'Mysecretpassword!',
-  keepAlive: true
+  keepAlive: 1200
 }
 var client = mqtt.connect(options);
 
